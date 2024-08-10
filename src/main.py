@@ -60,7 +60,6 @@ while cap.isOpened():
         landmarks = (
             results.pose_landmarks.landmark
         )  # list of Landmark objects (contains x,y coordinates normalized to range [0,1])
-        print(landmarks)
 
         # extract key body landmarks
         left_shoulder = get_landmark_coordinates(
