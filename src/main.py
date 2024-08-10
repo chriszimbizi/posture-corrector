@@ -31,7 +31,7 @@ shoulder_range = 10
 neck_range = 10
 last_alert_time = 0
 alert_cooldown = 5  # in seconds
-sound_file = os.path.join(os.path.dirname(__file__), "../sounds/alert.mp3")
+sound_file = os.path.join(os.path.dirname(__file__), "../sounds/alert.wav")
 
 # start video capture
 cap = cv2.VideoCapture(0)  # 0 for default webcam
