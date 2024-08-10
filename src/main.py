@@ -9,8 +9,7 @@ from utils import get_landmark_coordinates, draw_angle, calculate_angle
 import cv2
 import numpy as np
 import mediapipe as mp
-
-# from playsound import playsound
+from playsound import playsound
 
 # mediapipe initialization
 mp_pose = mp.solutions.pose  # pose estimation tools
@@ -35,7 +34,7 @@ alert_cooldown = 5  # in seconds
 sound_file = os.path.join(os.path.dirname(__file__), "../sounds/alert.mp3")
 
 # start video capture
-cap = cv2.VideoCapture(1)  # 0 for default webcam
+cap = cv2.VideoCapture(0)  # 0 for default webcam
 
 while cap.isOpened():
     ret, frame = (
@@ -152,8 +151,8 @@ while cap.isOpened():
                 status = "Poor Posture"  # red
                 if current_time - last_alert_time > alert_cooldown:
                     print("Poor posture detected! Please sit up straight.")
-                    # if os.path.exists(sound_file):
-                    # playsound(sound_file)
+                    if os.path.exists(sound_file):
+                        playsound(sound_file)
                     last_alert_time = current_time
             else:
                 status = "Good Posture"  # green
