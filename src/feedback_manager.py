@@ -29,8 +29,8 @@ class FeedbackManager:
         ):
             if current_time - self.last_alert_time > config.ALERT_COOLDOWN:
                 print("Poor posture detected! Please sit up straight.")
-                if os.path.exists(config.SOUND_FILE):
-                    playsound(config.SOUND_FILE)
+                # if os.path.exists(config.SOUND_FILE):
+                #     playsound(config.SOUND_FILE)  # uncomment these line to play a sound (might slow down the program)
                 self.last_alert_time = current_time
             return "Poor Posture"
         return "Good Posture"  # green
