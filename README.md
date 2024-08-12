@@ -68,6 +68,22 @@ Posture Corrector is a Python application designed to help monitor and correct p
 
 3. Real-Time Feedback: The application will monitor your posture and provide real-time feedback through visual cues and sound alerts if poor posture is detected.
 
+### Camera Index Configuration
+
+In the current implementation, the `VideoProcessor` class in `video_processor.py` initializes the camera with index 1. This is done because index 0 defaults to connecting to the iPhone via Continuity Camera. If this is not the case for you, you should set the camera index to 0 to use your default camera.
+
+#### To Configure the Camera Index:
+
+1. Initialize the VideoCapture object with the desired camera index:
+
+   `0` - Connects to the default camera on your system (usually the webcam, but can be a USB camera or other video source, in my case, the iPhone).
+
+   `1` - Connects to the secondary camera on your system (in my case, the MacBook's built-in camera).
+
+   ```python
+   self.capture = cv2.VideoCapture(0)
+   ```
+
 ## Performance Considerations
 
 In the current implementation, the code responsible for playing a sound when poor posture is detected is commented out due to performance issues. Specifically, enabling this feature can cause the application to freeze momentarily whenever poor posture is detected.
