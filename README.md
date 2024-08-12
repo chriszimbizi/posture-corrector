@@ -68,7 +68,7 @@ Posture Corrector is a Python application designed to help monitor and correct p
 
 3. Real-Time Feedback: The application will monitor your posture and provide real-time feedback through visual cues and sound alerts if poor posture is detected.
 
-### Performance Considerations
+## Performance Considerations
 
 In the current implementation, the code responsible for playing a sound when poor posture is detected is commented out due to performance issues. Specifically, enabling this feature can cause the application to freeze momentarily whenever poor posture is detected.
 
