@@ -5,12 +5,18 @@ import config
 
 # third party imports
 import cv2
-from playsound import playsound
+import simpleaudio as sa
 
 
 class FeedbackManager:
     def __init__(self):
         self.last_alert_time = 0
+        self.sound = None  # Store the sound object for playback
+        self.alert_start_time = None  # To track when the alert process starts
+
+        # Load the sound file if it exists
+        if os.path.exists(config.SOUND_FILE):
+            self.sound = sa.WaveObject.from_wave_file(config.SOUND_FILE)
 
     def get_status(self, shoulder_angle, neck_angle, shoulder_bounds, neck_bounds):
         """
@@ -29,8 +35,17 @@ class FeedbackManager:
         ):
             if current_time - self.last_alert_time > config.ALERT_COOLDOWN:
                 print("Poor posture detected! Please sit up straight.")
-                # if os.path.exists(config.SOUND_FILE):
-                #     playsound(config.SOUND_FILE)  # uncomment these line to play a sound (might slow down the program)
+
+                # Start timing the alert delivery process
+                self.alert_start_time = time.time()
+
+                if self.sound:
+                    self.sound.play()  # Play the sound using simpleaudio
+
+                # Calculate the time taken to deliver the alert
+                alert_delivery_time = time.time() - self.alert_start_time
+                print(f"Alert delivery time: {alert_delivery_time * 1000:.2f} ms")
+
                 self.last_alert_time = current_time
             return "Poor Posture"
         return "Good Posture"  # green
@@ -44,7 +59,6 @@ class FeedbackManager:
 
         :return: None
         """
-
         cv2.putText(
             image,
             status,
