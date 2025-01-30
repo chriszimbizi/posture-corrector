@@ -12,7 +12,7 @@ Posture Corrector is a Python application designed to help monitor and correct p
 - **OpenCV**: For real-time video capture and processing.
 - **Mediapipe**: Leveraged for pose detection and landmark tracking.
 - **Numpy**: Used for numerical computations.
-- **Playsound**: Used to play alert sounds when poor posture is detected.
+- **Simpleaudio**: Used to play alert sounds when poor posture is detected.
 
 ## Project Structure
 
@@ -28,7 +28,7 @@ Posture Corrector is a Python application designed to help monitor and correct p
 - Virtual environment (venv)
 - OpenCV
 - Mediapipe
-- Playsound
+- Simpleaudio
 
 ### Installation
 
@@ -72,7 +72,7 @@ Posture Corrector is a Python application designed to help monitor and correct p
 
 In the current implementation, the `VideoProcessor` class in `video_processor.py` initializes the camera with index 1. This is done because index 0 defaults to connecting to the iPhone via Continuity Camera. If this is not the case for you, you should set the camera index to 0 to use your default camera.
 
-#### To Configure the Camera Index:
+#### To Configure the Camera Index
 
 1. Initialize the VideoCapture object with the desired camera index:
 
@@ -84,19 +84,11 @@ In the current implementation, the `VideoProcessor` class in `video_processor.py
    self.capture = cv2.VideoCapture(0)
    ```
 
-## Performance Considerations
-
-In the current implementation, the code responsible for playing a sound when poor posture is detected is commented out due to performance issues. Specifically, enabling this feature can cause the application to freeze momentarily whenever poor posture is detected.
-
-**If you wish to enable sound notifications**:
-
-- Simply uncomment the relevant code in the `feedback_manager.py` file. However, please be aware that this may introduce noticeable lag in the application's performance.
-
 ### Profiling and Optimizing the Code
 
 To help you understand and potentially improve the performance of this application, you can profile the code to identify bottlenecks.
 
-#### Steps to Profile the Code:
+#### Steps to Profile the Code
 
 1. **Import the Profiler:**
 
